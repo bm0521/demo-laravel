@@ -15,8 +15,8 @@ class UsersTableSeeder extends Seeder
         $faker = Faker\Factory::create('ja_JP');
         // 固定ユーザーを作成
         DB::table('users')->insert([
-            'name' => 'sutara79',
-            'email' => 'toumin.m7@gmail.com',
+            'name' => 'bm0521',
+            'email' => 'bm0521.i@gmail.com',
             'password' => bcrypt('1234'),
             'lang' => 'ja',
             'email_verified_at' => $faker->dateTime(),
