@@ -1,5 +1,5 @@
 @php
-    $title = __('Users');
+    $title = env('APP_NAME');
 @endphp
 @extends('layouts.master')
 @section('title', 'demo-laravel')

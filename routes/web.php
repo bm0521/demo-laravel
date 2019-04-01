@@ -12,9 +12,13 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
     return view('top');
 });
+
+/*usersのCRUD*/
+/*php artisan route:list*/
+Route::resource('users', 'UserController');
+
 
 Auth::routes();
 
