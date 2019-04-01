@@ -15,10 +15,8 @@ Route::get('/', function () {
     return view('top');
 });
 
-/*usersのCRUD*/
-/*php artisan route:list*/
 Route::resource('users', 'UserController');
-
+Route::resource('posts', 'PostController');
 
 Auth::routes();
 

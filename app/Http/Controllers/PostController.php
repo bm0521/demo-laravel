@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\User;
+use App\Post;
 
-class UserController extends Controller
+class PostController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,9 +14,10 @@ class UserController extends Controller
      */
     public function index()
     {
-        //user全取得
-        $users = User::paginate(5);
-        return view('users.index', ['users' => $users]);
+        //新しい順から取得
+        $posts = Post::latest()->paginate(5);
+
+        return view('posts.index', ['posts' => $posts]);
     }
 
     /**
@@ -26,7 +27,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('users.create');
+        return view('posts.create');
     }
 
     /**
@@ -37,60 +38,59 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        $user = new User;
-        $user->name = $request->name;
-        $user->email = $request->email;
-        $user->password = $request->password;
-        $user->save();
-        return redirect('users/'.$user->id);
+        $post = new Post;
+        $post->title = $request->title;
+        $post->body = $request->body;
+        $post->save();
+        return redirect('posts/'.$post->id);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\User $user
+     * @param  \App\Post $post
      * @return \Illuminate\Http\Response
      */
-    public function show(User $user)
+    public function show(Post $post)
     {
-        $user->posts = $user->posts()->paginate(5);
-        return view('users.show', ['user' => $user]);
+        return view('posts.show', ['post' => $post]);
     }
-    
+
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\User $user
+     * @param  \App\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function edit(User $user)
+    public function edit(Post $post)
     {
-        return view('users.edit', ['user' => $user]);
+        return view('posts.edit', ['post' => $post]);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\User $user
+     * @param  \App\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
+    public function update(Request $request, Post $post)
     {
-        $user->name = $request->name;
-        $user->save();
-        return redirect('users/'.$user->id);
+        $post->title = $request->title;
+        $post->body = $request->body;
+        $post->save();
+        return redirect('posts/' . $post->id);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\User $user
+     * @param  \App\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function destroy(User $user)
+    public function destroy(Post $post)
     {
-        $user->delete();
-        return redirect('users');
+        $post->delete();
+        return redirect('posts');
     }
 }
