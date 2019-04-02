@@ -15,7 +15,7 @@ class UserController extends Controller
     public function index()
     {
         //user全取得
-        $users = User::paginate(5);
+        $users = User::simplePaginate(5);
         return view('users.index', ['users' => $users]);
     }
 
@@ -53,7 +53,7 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        $user->posts = $user->posts()->paginate(5);
+        $user->posts = $user->posts()->simplePaginate(5);
         return view('users.show', ['user' => $user]);
     }
     
