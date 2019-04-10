@@ -74,6 +74,10 @@
                                 @endif
                             -->
 
+                            <a class="btn btn-link" href="{{ route('login.provider', ['provider' => 'twitter']) }}">
+                                twitterログイン
+                            </a>
+
                             </div>
                         </div>
                     </form>

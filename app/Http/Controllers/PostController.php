@@ -7,6 +7,7 @@ use App\Post;
 
 class PostController extends Controller
 {
+
     /**
      * Create a new controller instance.
      *
