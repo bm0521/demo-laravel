@@ -23,3 +23,5 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/login/{provider}', 'Auth\LoginController@redirectToProvider')->name('login.provider');
+
+Route::get('login/{provider}/callback', 'Auth\LoginController@handleProviderCallback');
